@@ -2,7 +2,10 @@ package org.devio.rn.splashscreen;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.net.Uri;
 import android.os.Build;
+import android.widget.LinearLayout;
+import android.widget.VideoView;
 
 import java.lang.ref.WeakReference;
 
@@ -29,9 +32,14 @@ public class SplashScreen {
             public void run() {
                 if (!activity.isFinishing()) {
                     mSplashDialog = new Dialog(activity, themeResId);
-                    mSplashDialog.setContentView(R.layout.launch_screen);
-                    mSplashDialog.setCancelable(false);
+                    mSplashDialog.setContentView(R.layout.splash_layout);
 
+                    final VideoView videoview = (VideoView) mSplashDialog.findViewById(R.id.videoView);
+                    Uri uri=Uri.parse("android.resource://"+mSplashDialog.getContext().getPackageName()+"/"+R.raw.splashglitch);
+                    videoview.setVideoURI(uri);
+                    videoview.start();
+
+                    mSplashDialog.setCancelable(false);
                     if (!mSplashDialog.isShowing()) {
                         mSplashDialog.show();
                     }
@@ -45,7 +53,6 @@ public class SplashScreen {
      */
     public static void show(final Activity activity, final boolean fullScreen) {
         int resourceId = fullScreen ? R.style.SplashScreen_Fullscreen : R.style.SplashScreen_SplashTheme;
-
         show(activity, resourceId);
     }
 
