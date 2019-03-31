@@ -6,11 +6,7 @@ import com.facebook.react.bridge.ReactMethod;
 
 /**
  * SplashScreen
- * 启动屏
- * from：http://www.devio.org
- * Author:CrazyCodeBoy
- * GitHub:https://github.com/crazycodeboy
- * Email:crazycodeboy@gmail.com
+
  */
 public class SplashScreenModule extends ReactContextBaseJavaModule{
     public SplashScreenModule(ReactApplicationContext reactContext) {
@@ -22,17 +18,13 @@ public class SplashScreenModule extends ReactContextBaseJavaModule{
         return "SplashScreen";
     }
 
-    /**
-     * 打开启动屏
-     */
+
     @ReactMethod
     public void show() {
         SplashScreen.show(getCurrentActivity());
     }
 
-    /**
-     * 关闭启动屏
-     */
+
     @ReactMethod
     public void hide() {
         SplashScreen.hide(getCurrentActivity());
